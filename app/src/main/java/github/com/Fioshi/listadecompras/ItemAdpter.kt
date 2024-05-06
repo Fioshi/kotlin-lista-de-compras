@@ -8,6 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ItemViewHolder>() {
 
+    /*
+    * Aqui é definido um atributo a classe que consiste em: uma lista mutavel, ou seja, onde é
+    * possivel realizar mudanças na lista original, onde ela guarda elementos da nossa classe modelo
+    * ItemModel.
+     */
     private val items = mutableListOf<ItemModel>()
 
     /*
@@ -65,9 +70,15 @@ class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ItemViewHolder>() {
     * RecyclerView chama esse método para conferir o tamanho do conjunto de dados. Por exemplo, em um
     * aplicativo de catálogo de endereços, isso pode ser o número total de endereços. O RecyclerView
     *  usa isso para determinar quando não há mais itens que possam ser mostrados.
-     */
+    * No nosso contexto atual, ele esta desempenhando a função de registrar o tamanho da nossa lista
+    * de "TextViews" para nossa lista de compras*      */
     override fun getItemCount(): Int = items.size
 
+    /*
+    * A função abaixo esta sendo utilizado pelo recyclerView para notificar o adapter de que ocorreu
+    * uma alteração no conteudo da lista, seja ela de adição, remoção ou atualização de algum
+    * elemento já existente dentro da lista
+     */
     fun addItem(newItem: ItemModel) {
         items.add(newItem)
         notifyDataSetChanged();
