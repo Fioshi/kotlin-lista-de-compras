@@ -3,6 +3,7 @@ package github.com.Fioshi.listadecompras
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -14,6 +15,11 @@ class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ItemViewHolder>() {
     * ItemModel.
      */
     private val items = mutableListOf<ItemModel>()
+
+    fun removeItem(item: ItemModel) {
+        items.remove(item)
+        notifyDataSetChanged()
+    }
 
     /*
      * onCreateViewHolder serve para que o RecyclerView necessita criar um novo ViewHolder.
@@ -56,6 +62,7 @@ class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ItemViewHolder>() {
         * repetidas vezes
          */
         val textView = view.findViewById<TextView>(R.id.textViewItem)
+        val button = view.findViewById<ImageButton>(R.id.imageButton)
 
         /*
         * Nesse trecho é realizada a chamada para cada ItemViewHolder para alterar individualmente
@@ -63,6 +70,10 @@ class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ItemViewHolder>() {
          */
         fun bind(item: ItemModel) {
             textView.text = item.name
+
+            button.setOnClickListener {
+                item.onRemove(item)
+            }
         }
     }
 
